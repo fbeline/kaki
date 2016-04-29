@@ -1,5 +1,5 @@
-## kaki 
-*A nodejs command line search tool that nobody asked for.*
+![logo](https://cloud.githubusercontent.com/assets/5730881/14907747/65247360-0da3-11e6-9353-a6f6e4659ff4.png)
+The command line search tool that **nobody asked for**
 
 ### Why??
 - Designed to save your time
