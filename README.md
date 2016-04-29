@@ -2,10 +2,10 @@
 *A nodejs command line search tool that nobody asked for.*
 
 ### Why??
-- :shipit: Designed to save your time
-- :zap: Common tasks in fewer keystrokes
-- :man: Portable and easy to install (any machine with nodejs installed)
-- :octocat: Open source
+- Designed to save your time
+- Common tasks in fewer keystrokes
+- Portable and easy to install (any machine with nodejs installed)
+- Open source
 
 ### Instalation
     npm install -g kaki

@@ -1,8 +1,12 @@
 {
   "name": "kaki",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The developers search tool ",
   "main": "./src/kaki.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FelipeBB/kaki.git"
+  },
   "bin": {
     "kaki": "./src/kaki.js"
   },  
