@@ -1,15 +1,15 @@
 {
   "name": "kaki",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "The developers search tool ",
-  "main": "./src/kaki.js",
+  "main": "./bin/kaki.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/FelipeBB/kaki.git"
   },
   "bin": {
-    "kaki": "./src/kaki.js"
-  },  
+    "kaki": "./bin/kaki.js"
+  },
   "scripts": {
     "test": "mocha test"
   },
@@ -20,7 +20,7 @@
   "dependencies": {
     "chalk": "^1.1.3",
     "commander": "^2.9.0",
-    "fs-extra": "^0.29.0" 
+    "fs-extra": "^0.29.0"
   },
   "keywords": [
     "grep",

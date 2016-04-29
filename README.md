@@ -1,4 +1,5 @@
 ![logo](https://cloud.githubusercontent.com/assets/5730881/14907747/65247360-0da3-11e6-9353-a6f6e4659ff4.png)
+
 The command line search tool that **nobody asked for**
 
 ### Why??
@@ -12,10 +13,10 @@ The command line search tool that **nobody asked for**
 
 ### Usage
 
-	kaki [params] [path]
+	kaki [OPTION]... PATTERN [path]
 
 
-##### stupid examples:
+##### Examples:
 
 Search for shell files [.sh .bash .csh .tcsh .ksh .zsh .fish] in current directory
 
@@ -24,26 +25,25 @@ Search recursively `-R` for files files of type `-t` [.doc,.docx,.xls].
 
 	kaki -R -t ".doc,.docx,.xls"
 
-
 Apply following Regex only in javascript files
 
 	kaki --js -w "[A-Z].*"
 
-Search whole word `package`
+Search whole word
 
-    kaki -w package
+    kaki -w [...]
 
 Search for exact characters sequence
 
-	kaki -Q main.h
+	kaki -Q [...]
 
 Invert match `-v`: select non-matching files
 
-	kaki -vw index
+	kaki -vw  [...]
 
 Ignore case distinctions `-i`
 
-	kaki -iw ScRipT.bash
+	kaki -iw ScRipT.sh
 
 ### General options
 
@@ -124,6 +124,8 @@ Ignore case distinctions `-i`
 	--xml          .xml .dtd .xsl .xslt .ent
 	--yaml         .yaml .yml
 
+### Notes
+Kaki is strongly based on ack! project.
 
 ## The MIT License
 > Copyright (c) 2015 Felipe Baravieira

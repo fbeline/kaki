@@ -2,9 +2,9 @@
 
 var program = require('commander');
 var chalk = require('chalk');
-var fs = require('./fs-improved');
-var types = require('./types');
-var filters = require('./filters');
+var fs = require('./../lib/fs-improved');
+var types = require('./../lib/types');
+var filters = require('./../lib/filters');
 
 var typeList = types.getAll();
 var selectedTypes = [];
@@ -16,8 +16,8 @@ var path = process.cwd();
 function configureOptions() {
 
     program
-        .version('0.0.1')
-        .option('-i, --ignorecase', ' Ignore case distinctions')
+        .version('1.0.3')
+        .option('-i, --ignorecase', 'Ignore case distinctions')
         .option('-t, --extension <items>', 'Filter by custom types ex: ".app,.jar,.exe"')
         .option('-R, --rec', 'Search recursively')
         .option('-v, --invert', 'Invert match: select non-matching lines')
@@ -36,12 +36,12 @@ function configureOptions() {
  * check passed params and populate selectedType
  */
 function checkParams() {
-    
+
     filters.configure(program.ignorecase, program.invert);
 
     //verify if path exists
     if (program.args[0]) {
-        fs.access(program.args[0], function(err) {
+        fs.access(program.args[0], function (err) {
             if (err) {
                 console.log(chalk.red('\nERROR: path not found.\n'));
                 process.exit();
@@ -51,7 +51,7 @@ function checkParams() {
 
     //if extension param exists
     if (program.extension) {
-        program.extension.split(",").forEach(function(el) {
+        program.extension.split(",").forEach(function (el) {
             selectedTypes.push(el);
         });
     }
@@ -59,7 +59,7 @@ function checkParams() {
     //veify dynamic type params
     for (var type in typeList) {
         if (program[type]) {
-            types.get(type).forEach(function(el) {
+            types.get(type).forEach(function (el) {
                 selectedTypes.push(el);
             });
         }
@@ -81,8 +81,9 @@ function checkParams() {
  */
 function applyFilters(err, files) {
     try {
-        if (err)
+        if (err) {
             throw err;
+        }
 
         files = filters.validExtensions(files, selectedTypes);
 

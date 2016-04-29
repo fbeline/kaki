@@ -1,6 +1,6 @@
 require('mocha');
 var assert = require('chai').assert;
-var filters = require('../src/filters');
+var filters = require('../lib/filters');
 
 var files = ["index.js", "index2.js", "module42.js", "package.json", "jshint.json", "SCRIPT.sh"];
 
