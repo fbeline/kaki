@@ -1,11 +1,11 @@
 ![logo](https://cloud.githubusercontent.com/assets/5730881/14907747/65247360-0da3-11e6-9353-a6f6e4659ff4.png)
 
 The command line search tool that **nobody asked for**
-
 ### Why??
 - Designed to save your time
 - Common tasks in fewer keystrokes
-- Ignore VCS directories and others (node_modules, ... )
+- Only search for what really matter
+- Full optimized for developers
 - Portable and easy to install (any machine with nodejs installed)
 - Open source
 
@@ -22,9 +22,10 @@ The command line search tool that **nobody asked for**
 Search for shell files [.sh .bash .csh .tcsh .ksh .zsh .fish] in current directory
 
 	kaki --shell
-Search recursively `-R` for files files of type `-t` [.doc,.docx,.xls].
 
-	kaki -R -t ".doc,.docx,.xls"
+Search recursively `-R` for files of type `-t` .doc,.docx,.xls
+
+	kaki -R -t .doc,.docx,.xls
 
 Apply following Regex only in javascript files
 
@@ -46,16 +47,21 @@ Ignore case distinctions `-i`
 
 	kaki -iw ScRipT.sh
 
+Ignore directories `--ignore`
+
+    kaki -R --ignore dist,target
+
 ### General options
 
-	 -h, --help                   output usage information
-	 -V, --version                output the version number
-     -i, --ignorecase			  Ignore case distinctions
-	 -t, --extensions             filter by custom types ex: ".app,.jar,.exe"
-	 -R, --rec                 	  search recursively
-	 -v, --invert-match           Invert match: select non-matching lines
-	 -w, --word                   Force PATTERN to match only whole words
-	 -Q, --literal                Quote all metacharacters
+	 -h, --help             output usage information
+	 -V, --version          output the version number
+     -i, --ignorecas        Ignore case distinctions
+	 -t, --extensions       filter by custom types ex: ".app,.jar,.exe"
+	 -R, --rec              search recursively
+	 -v, --invert-match     Invert match: select non-matching lines
+	 -w, --word             Force PATTERN to match whole words / regex
+	 -Q, --literal          Quote all metacharacters
+	 --ignore               Ignore directories from search
 
 ### Supported languages and related extensions
 
@@ -125,8 +131,15 @@ Ignore case distinctions `-i`
 	--xml          .xml .dtd .xsl .xslt .ent
 	--yaml         .yaml .yml
 
+### Default ignored directories
+    [".bzr", ".cdv", ".dep", ".dot", ".nib", ".plst", ".git", ".hg", ".pc", ".svn",
+     "_MTN", "CSV", "RCS", "SCCS", "_darcs", "_sgbak", "utom4te.cache", "blib", "_build",
+     "cover_db", "node_modules", "CMakeFiles", ".metadata", ".cabal-sandbox", ".idea"]
+
 ### Notes
-Kaki is strongly based on ack! project.
+- Kaki is strongly inspired in ack! project.
+- Made with love :heart:
+
 
 ## The MIT License
 > Copyright (c) 2015 Felipe Baravieira

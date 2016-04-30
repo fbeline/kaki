@@ -5,6 +5,7 @@ var chalk = require('chalk');
 var fs = require('./../lib/fs-improved');
 var types = require('./../lib/types');
 var filters = require('./../lib/filters');
+var defaultConfig = require('./../lib/default-config');
 
 var typeList = types.getAll();
 var selectedTypes = [];
@@ -22,7 +23,8 @@ function configureOptions() {
         .option('-R, --rec', 'Search recursively')
         .option('-v, --invert', 'Invert match: select non-matching lines')
         .option('-w, --word [word]', 'Force PATTERN to match only whole words / regex')
-        .option('-Q, --literal  [literal]', 'Quote all metacharacters');
+        .option('-Q, --literal  [literal]', 'Quote all metacharacters')
+        .option('--ignore <items>', 'ignore directories');
 
     //dynamic generate options
     for (var type in typeList) {
@@ -47,6 +49,10 @@ function checkParams() {
                 process.exit();
             }
         });
+    }
+
+    if(program.ignore) {
+        defaultConfig.setIgnoreList(program.ignore.split(','));
     }
 
     //if extension param exists
