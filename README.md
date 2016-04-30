@@ -5,6 +5,7 @@ The command line search tool that **nobody asked for**
 ### Why??
 - Designed to save your time
 - Common tasks in fewer keystrokes
+- Ignore VCS directories and others (node_modules, ... )
 - Portable and easy to install (any machine with nodejs installed)
 - Open source
 

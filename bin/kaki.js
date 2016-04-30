@@ -16,7 +16,7 @@ var path = process.cwd();
 function configureOptions() {
 
     program
-        .version('1.0.3')
+        .version('1.0.5')
         .option('-i, --ignorecase', 'Ignore case distinctions')
         .option('-t, --extension <items>', 'Filter by custom types ex: ".app,.jar,.exe"')
         .option('-R, --rec', 'Search recursively')
