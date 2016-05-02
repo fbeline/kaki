@@ -1,4 +1,5 @@
-require('mocha');
+var describe = require('mocha').describe;
+var it = require('mocha').it;
 var assert = require('chai').assert;
 var filters = require('../lib/filters');
 
@@ -21,7 +22,7 @@ describe("testing filters", function () {
             assert.lengthOf(response, 0);
         });
 
-        it("invert match", function(){
+        it("invert match", function () {
             filters.configure(false, true);
             var literal = "package";
             var response = filters.literalMatch(files, literal);
@@ -29,7 +30,7 @@ describe("testing filters", function () {
             assert.lengthOf(response, 6);
         });
 
-        it("ignore case", function(){
+        it("ignore case", function () {
             filters.configure(true, false);
             var literal = "script.sh";
             var response = filters.literalMatch(files, literal);

@@ -1,4 +1,5 @@
-require('mocha');
+var describe = require('mocha').describe;
+var it = require('mocha').it;
 var assert = require('chai').assert;
 var type = require('../lib/types.js');
 
