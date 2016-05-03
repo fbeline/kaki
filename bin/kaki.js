@@ -6,7 +6,9 @@ var fs = require('./../lib/fs-improved');
 var types = require('./../lib/types');
 var filters = require('./../lib/filters');
 var defaultConfig = require('./../lib/default-config');
+var util = require('./../lib/util');
 
+var timeStart = 0;
 var typeList = types.getAll();
 var selectedTypes = [];
 var path = process.cwd();
@@ -14,7 +16,7 @@ var path = process.cwd();
 /**
  * configure input options
  */
-function configureOptions() {
+function initialize() {
 
     program
         .version('1.0.5')
@@ -26,12 +28,14 @@ function configureOptions() {
         .option('-Q, --literal  [literal]', 'Quote all metacharacters')
         .option('--ignore <items>', 'ignore directories');
 
+
     //dynamic generate options
     for (var type in typeList) {
         program.option('--' + type, 'filter ' + type + ' files');
     }
 
     program.parse(process.argv);
+    checkParams();
 }
 
 /**
@@ -39,6 +43,7 @@ function configureOptions() {
  */
 function checkParams() {
 
+    timeStart = Date.now();
     filters.configure(program.ignorecase, program.invert);
 
     //verify if path exists
@@ -51,7 +56,7 @@ function checkParams() {
         });
     }
 
-    if(program.ignore) {
+    if (program.ignore) {
         defaultConfig.setIgnoreList(program.ignore.split(','));
     }
 
@@ -86,11 +91,9 @@ function checkParams() {
  * @param {Array <string>} files
  */
 function applyFilters(err, files) {
-    try {
-        if (err) {
-            throw err;
-        }
+    var processFilesQty = files.length;
 
+    function runFilters(files) {
         files = filters.validExtensions(files, selectedTypes);
 
         // quote all metacharacters
@@ -103,17 +106,30 @@ function applyFilters(err, files) {
             files = filters.wordRegexMatch(files, program.word);
         }
 
-        //process result
-        console.log(files.join('\n'));
+        processResult(files);
+    }
+
+    function processResult(response) {
+        var timeEnd = Date.now() - timeStart;
+
+        util.print(response.join('\n'))('white');
         if (!files.length) {
-            console.log(chalk.yellow('-- srry, no files were found --\n'));
+            util.print('-- srry, no files were found --\n')('yellow');
+        } else {
+            util.print('%s matches', response.length)('green');
         }
+        util.print('%s searched files in %s ms', processFilesQty, timeEnd)('gray');
+    }
+
+
+    try {
+        if (err) throw err;
+        runFilters(files);
     } catch (ex) {
-        console.log(chalk.red('\nERROR: oopps something is wrong..\n'));
+        util.print('\nERROR: oopps something is wrong..\n')('red');
     } finally {
         process.exit();
     }
 }
 
-configureOptions();
-checkParams();
+initialize();
