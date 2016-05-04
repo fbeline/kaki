@@ -23,29 +23,33 @@ Search for shell files [.sh .bash .csh .tcsh .ksh .zsh .fish] in current directo
 
 	kaki --shell
 
+Search for text in files `-x or --text`
+
+    kaki -x myFunction()
+
 Search recursively `-R` for files of type `-t` .doc,.docx,.xls
 
 	kaki -R -t .doc,.docx,.xls
 
-Apply following Regex only in javascript files
+Apply the following Regex only in javascript files name
 
-	kaki --js -w "[A-Z].*"
+	kaki --js -w "[A-Z]*"
 
-Search whole word
+Search whole word (only for file name)
 
     kaki -w [...]
 
-Search for exact characters sequence
+Search for exact characters sequence (only for file name)
 
 	kaki -Q [...]
 
 Invert match `-v`: select non-matching files
 
-	kaki -vw  [...]
+	kaki -v [OPTIONS]... PATTERN [path]
 
 Ignore case distinctions `-i`
 
-	kaki -iw ScRipT.sh
+	kaki -i [OPTIONS]... PATTERN [path]
 
 Ignore directories `--ignore`
 
@@ -56,11 +60,12 @@ Ignore directories `--ignore`
 	 -h, --help             output usage information
 	 -V, --version          output the version number
      -i, --ignorecas        Ignore case distinctions
+     -x, --text             find text in files
 	 -t, --extensions       filter by custom types ex: ".app,.jar,.exe"
 	 -R, --rec              search recursively
 	 -v, --invert-match     Invert match: select non-matching lines
-	 -w, --word             Force PATTERN to match whole words / regex
-	 -Q, --literal          Quote all metacharacters
+	 -w, --word             Force PATTERN to match whole words/regex (only for file name)
+	 -Q, --literal          Quote all metacharacters (only for file name)
 	 --ignore               Ignore directories from search
 
 ### Supported languages and related extensions
@@ -141,24 +146,5 @@ Ignore directories `--ignore`
 - Made with love :heart:
 
 
-## The MIT License
-> Copyright (c) 2015 Felipe Baravieira
-
-> Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-> The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+### License
+MIT

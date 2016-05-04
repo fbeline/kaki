@@ -19,13 +19,14 @@ var path = process.cwd();
 function initialize() {
 
     program
-        .version('1.0.5')
+        .version('1.1.0')
         .option('-i, --ignorecase', 'Ignore case distinctions')
         .option('-t, --extension <items>', 'Filter by custom types ex: ".app,.jar,.exe"')
-        .option('-R, --rec', 'Search recursively')
+        .option('-R, --rec', 'recurse into subdirectories')
+        .option('-x, --text [text]', 'find text in files')
         .option('-v, --invert', 'Invert match: select non-matching lines')
-        .option('-w, --word [word]', 'Force PATTERN to match only whole words / regex')
-        .option('-Q, --literal  [literal]', 'Quote all metacharacters')
+        .option('-w, --word [word]', 'Force PATTERN to match only whole words (file name)')
+        .option('-Q, --literal  [literal]', 'Quote all metacharacters (file name)')
         .option('--ignore <items>', 'ignore directories');
 
 
@@ -106,7 +107,14 @@ function applyFilters(err, files) {
             files = filters.wordRegexMatch(files, program.word);
         }
 
-        processResult(files);
+        if (program.text) {
+            filters.fileContentMatch(files, program.text, function (err, result) {
+                if (err) throw err;
+                processResult(result);
+            });
+        } else {
+            processResult(files);
+        }
     }
 
     function processResult(response) {
@@ -119,6 +127,7 @@ function applyFilters(err, files) {
             util.print('%s matches', response.length)('green');
         }
         util.print('%s searched files in %s ms', processFilesQty, timeEnd)('gray');
+        process.exit();
     }
 
 
@@ -127,8 +136,7 @@ function applyFilters(err, files) {
         runFilters(files);
     } catch (ex) {
         util.print('\nERROR: oopps something is wrong..\n')('red');
-    } finally {
-        process.exit();
+        process.ext();
     }
 }
 
