@@ -25,7 +25,7 @@ Search for shell files [.sh .bash .csh .tcsh .ksh .zsh .fish] in current directo
 
 Search for text in files `-x or --text`
 
-    kaki -x myFunction()
+    kaki -x myFunction
 
 Search recursively `-R` for files of type `-t` .doc,.docx,.xls
 
@@ -35,11 +35,7 @@ Apply the following Regex only in javascript files name
 
 	kaki --js -w "[A-Z]*"
 
-Search whole word (only for file name)
-
-    kaki -w [...]
-
-Search for exact characters sequence (only for file name)
+Search for characters sequence (only for file name)
 
 	kaki -Q [...]
 
