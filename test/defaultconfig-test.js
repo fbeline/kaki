@@ -9,7 +9,7 @@ describe('testing default-config', function () {
         var output = defaultConfig.ignore(path);
         assert.isTrue(output);
 
-        path = 'src';
+        path = '.git-another';
         output = defaultConfig.ignore(path);
         assert.isNotTrue(output);
     });
