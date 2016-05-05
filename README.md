@@ -19,25 +19,29 @@ The command line search tool that **nobody asked for**
 
 ##### Examples:
 
-Search for shell files [.sh .bash .csh .tcsh .ksh .zsh .fish] in current directory
-
-	kaki --shell
-
 Search for text in files `-x or --text`
 
     kaki -x myFunction
+
+Search for regex pattern in files
+
+    kaki -x "/filter.*/"
+
+Search for files that contains text in name `-w`
+
+    kaki -w "index"
+
+Search for regex pattern in files name
+
+    kaki -w "/[A-Z]+.js/"
 
 Search recursively `-R` for files of type `-t` .doc,.docx,.xls
 
 	kaki -R -t .doc,.docx,.xls
 
-Apply the following Regex only in javascript files name
+Search for shell files [.sh .bash .csh .tcsh .ksh .zsh .fish] in current directory
 
-	kaki --js -w "[A-Z]*"
-
-Search for characters sequence (only for file name)
-
-	kaki -Q [...]
+	kaki --shell
 
 Invert match `-v`: select non-matching files
 
@@ -55,13 +59,12 @@ Ignore directories `--ignore`
 
 	 -h, --help             output usage information
 	 -V, --version          output the version number
-     -i, --ignorecas        Ignore case distinctions
-     -x, --text             find text in files
+     -i, --ignorecase       Ignore case distinctions
+     -x, --text             find text or /regex/ in files
+	 -w, --word             force PATTERN to match only whole words or /regex/ (file name)
 	 -t, --extensions       filter by custom types ex: ".app,.jar,.exe"
 	 -R, --rec              search recursively
 	 -v, --invert-match     Invert match: select non-matching lines
-	 -w, --word             Force PATTERN to match whole words/regex (only for file name)
-	 -Q, --literal          Quote all metacharacters (only for file name)
 	 --ignore               Ignore directories from search
 
 ### Supported languages and related extensions

@@ -7,11 +7,11 @@ var files = ["index.js", "index2.js", "module42.js", "package.json", "jshint.jso
 
 describe("testing filters", function () {
 
-    describe("literalMatch", function () {
+    describe("literal match", function () {
         it("sanity", function () {
             filters.configure(false, false);
             var literal = "inde";
-            var response = filters.literalMatch(files, literal);
+            var response = filters.fileNameFilter(files, literal);
             assert.typeOf(response, 'array');
             assert.lengthOf(response, 2);
         });
@@ -19,7 +19,7 @@ describe("testing filters", function () {
         it("invert match", function () {
             filters.configure(false, true);
             var literal = "inde";
-            var response = filters.literalMatch(files, literal);
+            var response = filters.fileNameFilter(files, literal);
             assert.typeOf(response, 'array');
             assert.lengthOf(response, 4);
         });
@@ -27,7 +27,7 @@ describe("testing filters", function () {
         it("ignore case", function () {
             filters.configure(true, false);
             var literal = "script";
-            var response = filters.literalMatch(files, literal);
+            var response = filters.fileNameFilter(files, literal);
             assert.typeOf(response, 'array');
             assert.lengthOf(response, 1);
             assert.equal(response, "SCRIPT.sh");
@@ -35,20 +35,12 @@ describe("testing filters", function () {
     });
 
 
-    describe("wordRegexMatch", function () {
-        it("whole word", function () {
-            filters.configure(false, false);
-            var word = "index";
-            var response = filters.wordRegexMatch(files, word);
-            assert.typeOf(response, 'array');
-            assert.lengthOf(response, 2);
-            assert.equal(String(response), "index.js,index2.js");
-        });
+    describe("regex match", function () {
 
         it("regex", function () {
             filters.configure(false, false);
-            var regex = "[0-9]+.*";
-            var response = filters.wordRegexMatch(files, regex);
+            var regex = "/[0-9]+.*/";
+            var response = filters.fileNameFilter(files, regex);
             assert.typeOf(response, 'array');
             assert.lengthOf(response, 2);
             assert.equal(String(response), "index2.js,module42.js");
@@ -56,8 +48,8 @@ describe("testing filters", function () {
 
         it("invert match", function () {
             filters.configure(false, true);
-            var word = "index";
-            var response = filters.wordRegexMatch(files, word);
+            var word = "/index/";
+            var response = filters.fileNameFilter(files, word);
             assert.typeOf(response, 'array');
             assert.lengthOf(response, 4);
             assert.equal(String(response), "module42.js,package.json,jshint.json,SCRIPT.sh");
@@ -65,8 +57,8 @@ describe("testing filters", function () {
 
         it("ignore case", function () {
             filters.configure(true, false);
-            var word = "scri";
-            var response = filters.wordRegexMatch(files, word);
+            var word = "/scri/";
+            var response = filters.fileNameFilter(files, word);
             assert.typeOf(response, 'array');
             assert.lengthOf(response, 1);
             assert.equal(response, "SCRIPT.sh");

@@ -23,10 +23,9 @@ function initialize() {
         .option('-i, --ignorecase', 'Ignore case distinctions')
         .option('-t, --extension <items>', 'Filter by custom types ex: ".app,.jar,.exe"')
         .option('-R, --rec', 'recurse into subdirectories')
-        .option('-x, --text [text]', 'find text in files')
+        .option('-x, --text [text]', 'find text or /regex/ in files')
+        .option('-w, --word [word]', 'force PATTERN to match only whole words or /regex/ (file name)')
         .option('-v, --invert', 'Invert match: select non-matching lines')
-        .option('-w, --word [word]', 'word-regexp, force PATTERN to match only whole words (file name)')
-        .option('-Q, --literal  [literal]', 'Quote all metacharacters (file name)')
         .option('--ignore <items>', 'ignore directories');
 
 
@@ -97,14 +96,8 @@ function applyFilters(err, files) {
     function runFilters(files) {
         files = filters.validExtensions(files, selectedTypes);
 
-        // quote all metacharacters
-        if (program.literal) {
-            files = filters.literalMatch(files, program.literal);
-        }
-
-        //return whole word or regex match
         if (program.word) {
-            files = filters.wordRegexMatch(files, program.word);
+            files = filters.fileNameFilter(files, program.word);
         }
 
         if (program.text) {

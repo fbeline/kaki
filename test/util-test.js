@@ -52,4 +52,17 @@ describe('testing util', function () {
             assert.lengthOf(target, 3);
         });
     });
+
+    describe('isRegex', function(){
+       it('sanity', function() {
+           var expression = '/its n/ot a regex';
+           var output = util.isRegex(expression);
+           assert.isNotTrue(expression[0]);
+
+           expression = '/\d+.*/'
+           output = util.isRegex(expression);
+           assert.isTrue(output[0]);
+           assert.equal(output[1], '\d+.*');
+       });
+    });
 });
