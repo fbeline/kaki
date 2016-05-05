@@ -10,29 +10,23 @@ describe("testing filters", function () {
     describe("literalMatch", function () {
         it("sanity", function () {
             filters.configure(false, false);
-            var literal = "package.json";
+            var literal = "inde";
             var response = filters.literalMatch(files, literal);
             assert.typeOf(response, 'array');
-            assert.lengthOf(response, 1);
-            assert.typeOf(response[0], 'string');
-
-            literal = "package";
-            response = filters.literalMatch(files, literal);
-            assert.typeOf(response, 'array');
-            assert.lengthOf(response, 0);
+            assert.lengthOf(response, 2);
         });
 
         it("invert match", function () {
             filters.configure(false, true);
-            var literal = "package";
+            var literal = "inde";
             var response = filters.literalMatch(files, literal);
             assert.typeOf(response, 'array');
-            assert.lengthOf(response, 6);
+            assert.lengthOf(response, 4);
         });
 
         it("ignore case", function () {
             filters.configure(true, false);
-            var literal = "script.sh";
+            var literal = "script";
             var response = filters.literalMatch(files, literal);
             assert.typeOf(response, 'array');
             assert.lengthOf(response, 1);

@@ -25,7 +25,7 @@ function initialize() {
         .option('-R, --rec', 'recurse into subdirectories')
         .option('-x, --text [text]', 'find text in files')
         .option('-v, --invert', 'Invert match: select non-matching lines')
-        .option('-w, --word [word]', 'Force PATTERN to match only whole words (file name)')
+        .option('-w, --word [word]', 'word-regexp, force PATTERN to match only whole words (file name)')
         .option('-Q, --literal  [literal]', 'Quote all metacharacters (file name)')
         .option('--ignore <items>', 'ignore directories');
 
