@@ -129,7 +129,7 @@ function applyFilters(err, files) {
         runFilters(files);
     } catch (ex) {
         util.print('\nERROR: oopps something is wrong..\n')('red');
-        process.ext();
+        process.exit();
     }
 }
 
