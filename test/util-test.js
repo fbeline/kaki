@@ -57,12 +57,11 @@ describe('testing util', function () {
        it('sanity', function() {
            var expression = '/its n/ot a regex';
            var output = util.isRegex(expression);
-           assert.isNotTrue(expression[0]);
+           assert.isNotTrue(output);
 
            expression = '/\d+.*/'
            output = util.isRegex(expression);
-           assert.isTrue(output[0]);
-           assert.equal(output[1], '\d+.*');
+           assert.isTrue(output);
        });
     });
 });
