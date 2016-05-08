@@ -50,7 +50,7 @@ function checkParams() {
     if (program.args[0]) {
         fs.access(program.args[0], function (err) {
             if (err) {
-                console.log(chalk.red('\nERROR: path not found.\n'));
+                util.print('\nERROR: path not found.\n')('red');
                 process.exit();
             }
         });
@@ -67,7 +67,7 @@ function checkParams() {
         });
     }
 
-    //veify dynamic type params
+    //verify dynamic type params
     for (var type in typeList) {
         if (program[type]) {
             types.get(type).forEach(function (el) {
@@ -97,7 +97,7 @@ function applyFilters(err, files) {
         files = filters.validExtensions(files, selectedTypes);
 
         if (program.word) {
-            files = filters.fileNameFilter(files, program.word);
+            files = filters.fileNameMatch(files, program.word);
         }
 
         if (program.text) {
@@ -110,17 +110,20 @@ function applyFilters(err, files) {
         }
     }
 
+    /**
+     * print result after all filters
+     * @param response
+     */
     function processResult(response) {
         var timeEnd = Date.now() - timeStart;
 
         util.print(response.join('\n'))('white');
-        if (!files.length) {
+        if (!response.length) {
             util.print('-- srry, no files were found --\n')('yellow');
         } else {
             util.print('%s matches', response.length)('green');
         }
         util.print('%s searched files in %s ms', processFilesQty, timeEnd)('gray');
-        process.exit();
     }
 
 
@@ -129,7 +132,6 @@ function applyFilters(err, files) {
         runFilters(files);
     } catch (ex) {
         util.print('\nERROR: oopps something is wrong..\n')('red');
-        process.exit();
     }
 }
 

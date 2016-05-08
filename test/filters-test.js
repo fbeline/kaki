@@ -11,7 +11,7 @@ describe("testing filters", function () {
         it("sanity", function () {
             filters.configure(false, false);
             var literal = "inde";
-            var response = filters.fileNameFilter(files, literal);
+            var response = filters.fileNameMatch(files, literal);
             assert.typeOf(response, 'array');
             assert.lengthOf(response, 2);
         });
@@ -19,7 +19,7 @@ describe("testing filters", function () {
         it("invert match", function () {
             filters.configure(false, true);
             var literal = "inde";
-            var response = filters.fileNameFilter(files, literal);
+            var response = filters.fileNameMatch(files, literal);
             assert.typeOf(response, 'array');
             assert.lengthOf(response, 4);
         });
@@ -27,7 +27,7 @@ describe("testing filters", function () {
         it("ignore case", function () {
             filters.configure(true, false);
             var literal = "script";
-            var response = filters.fileNameFilter(files, literal);
+            var response = filters.fileNameMatch(files, literal);
             assert.typeOf(response, 'array');
             assert.lengthOf(response, 1);
             assert.equal(response, "SCRIPT.sh");
@@ -40,7 +40,7 @@ describe("testing filters", function () {
         it("regex", function () {
             filters.configure(false, false);
             var regex = "/[0-9]+.*/";
-            var response = filters.fileNameFilter(files, regex);
+            var response = filters.fileNameMatch(files, regex);
             assert.typeOf(response, 'array');
             assert.lengthOf(response, 2);
             assert.equal(String(response), "index2.js,module42.js");
@@ -49,7 +49,7 @@ describe("testing filters", function () {
         it("invert match", function () {
             filters.configure(false, true);
             var word = "/index/";
-            var response = filters.fileNameFilter(files, word);
+            var response = filters.fileNameMatch(files, word);
             assert.typeOf(response, 'array');
             assert.lengthOf(response, 4);
             assert.equal(String(response), "module42.js,package.json,jshint.json,SCRIPT.sh");
@@ -58,7 +58,7 @@ describe("testing filters", function () {
         it("ignore case", function () {
             filters.configure(true, false);
             var word = "/scri/";
-            var response = filters.fileNameFilter(files, word);
+            var response = filters.fileNameMatch(files, word);
             assert.typeOf(response, 'array');
             assert.lengthOf(response, 1);
             assert.equal(response, "SCRIPT.sh");
