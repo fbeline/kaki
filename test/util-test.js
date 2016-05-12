@@ -53,15 +53,26 @@ describe('testing util', function () {
         });
     });
 
-    describe('isRegex', function(){
-       it('sanity', function() {
-           var expression = '/its n/ot a regex';
-           var output = util.isRegex(expression);
-           assert.isNotTrue(output);
+    describe('isRegex', function () {
+        it('sanity', function () {
+            var expression = '/its n/ot a regex';
+            var output = util.isRegex(expression);
+            assert.isNotTrue(output);
 
-           expression = '/\d+.*/'
-           output = util.isRegex(expression);
-           assert.isTrue(output);
-       });
+            expression = '/\d+.*/'
+            output = util.isRegex(expression);
+            assert.isTrue(output);
+        });
+    });
+
+    describe('uniq', function () {
+        it('sanity', function () {
+            var arr = [1, 2, 3, 4, 5];
+            var output = util.uniq(arr);
+            assert.equal(output.toString(), arr.toString());
+            arr = [1 , 2, 1, 3, 2];
+            output = util.uniq(arr);
+            assert.equal(output.toString(), [1,3,2].toString());
+        });
     });
 });

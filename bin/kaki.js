@@ -117,7 +117,15 @@ function applyFilters(err, files) {
     function processResult(response) {
         var timeEnd = Date.now() - timeStart;
 
-        util.print(response.join('\n'))('white');
+        if(response && typeof response[0] === 'object') {
+            response.forEach(function(item){
+                util.print(item.file)('green');
+                util.print(item.lines.join('\n'))('white');
+            });
+        } else {
+            util.print(response.join('\n'))('white');
+        }
+
         if (!response.length) {
             util.print('-- srry, no files were found --\n')('yellow');
         } else {
