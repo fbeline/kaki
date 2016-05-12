@@ -119,8 +119,8 @@ function applyFilters(err, files) {
 
         if(response && typeof response[0] === 'object') {
             response.forEach(function(item){
-                util.print(item.file)('green');
-                util.print(item.lines.join('\n'))('white');
+                util.print(item.file)();
+                util.print(item.lines.join('\n'))();
             });
         } else {
             util.print(response.join('\n'))('white');
