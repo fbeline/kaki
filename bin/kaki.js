@@ -19,7 +19,7 @@ var path = process.cwd();
 function initialize() {
 
     program
-        .version('1.1.0')
+        .version('1.3.4')
         .option('-i, --ignorecase', 'Ignore case distinctions')
         .option('-t, --extension <items>', 'Filter by custom types ex: ".app,.jar,.exe"')
         .option('-R, --rec', 'recurse into subdirectories')
