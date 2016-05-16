@@ -9,12 +9,14 @@ The command line search tool that **nobody asked for**
 - Portable and easy to install (any machine with nodejs installed)
 - Open source
 
+![kaki grep example](https://cloud.githubusercontent.com/assets/5730881/15277889/0002cd24-1ae6-11e6-82bd-946fd8e22c94.png)
+
 ### Instalation
     npm install -g kaki
 
 ### Usage
 
-	kaki [OPTION]... PATTERN [path]
+    kaki [OPTION]... PATTERN [path]
 
 
 ##### Examples:
@@ -37,19 +39,19 @@ Search for regex pattern in files name
 
 Search recursively `-R` for files of type `-t` .doc,.docx,.xls
 
-	kaki -R -t .doc,.docx,.xls
+    kaki -R -t .doc,.docx,.xls
 
 Search for shell files [.sh .bash .csh .tcsh .ksh .zsh .fish] in current directory
 
-	kaki --shell
+    kaki --shell
 
 Invert match `-v`: select non-matching files
 
-	kaki -v [OPTIONS]... PATTERN [path]
+    kaki -v [OPTIONS]... PATTERN [path]
 
 Ignore case distinctions `-i`
 
-	kaki -i [OPTIONS]... PATTERN [path]
+    kaki -i [OPTIONS]... PATTERN [path]
 
 Ignore directories `--ignore`
 
@@ -57,83 +59,83 @@ Ignore directories `--ignore`
 
 ### General options
 
-	 -h, --help             output usage information
-	 -V, --version          output the version number
+     -h, --help             output usage information
+     -V, --version          output the version number
      -i, --ignorecase       Ignore case distinctions
      -x, --text             find text or /regex/ in files
-	 -w, --word             force PATTERN to match only whole words or /regex/ (file name)
-	 -t, --extensions       filter by custom types ex: ".app,.jar,.exe"
-	 -R, --rec              search recursively
-	 -v, --invert-match     Invert match: select non-matching lines
-	 --ignore               Ignore directories from search
+     -w, --word             force PATTERN to match only whole words or /regex/ (file name)
+     -t, --extensions       filter by custom types ex: ".app,.jar,.exe"
+     -R, --rec              search recursively
+     -v, --invert-match     Invert match: select non-matching lines
+     --ignore               Ignore directories from search
 
 ### Supported languages and related extensions
 
-	--actionscript .as .mxml
-	--ada          .ada .adb .ads
-	--asm          .asm .s
-	--asp          .asp
-	--aspx         .master .ascx .asmx .aspx .svc
-	--batch        .bat .cmd
-	--cc           .c .h .xs
-	--cfmx         .cfc .cfm .cfml
-	--clojure      .clj
-	--cmake        CMakeLists.txt; .cmake
-	--coffeescript .coffee
-	--cpp          .cpp .cc .cxx .m .hpp .hh .h .hxx
-	--csharp       .cs
-	--css          .css
-	--dart         .dart
-	--delphi       .pas .int .dfm .nfm .dof .dpk .dproj .groupproj .bdsgroup .bdsproj
-	--elisp        .el
-	--elixir       .ex .exs
-	--erlang       .erl .hrl
-	--fortran      .f .f77 .f90 .f95 .f03 .for .ftn .fpp
-	--go           .go
-	--groovy       .groovy .gtmpl .gpp .grunit .gradle
-	--haskell      .hs .lhs
-	--hh           .h
-	--html         .htm .html
-	--java         .java .properties
-	--js           .js
-	--json         .json
-	--jsp          .jsp .jspx .jhtm .jhtml
-	--less         .less
-	--lisp         .lisp .lsp
-	--lua          .lua
-	--make         .mk; .mak; makefile; Makefile; GNUmakefile
-	--matlab       .m
-	--md           .mkd; .md
-	--objc         .m .h
-	--objcpp       .mm .h
-	--ocaml        .ml .mli
-	--parrot       .pir .pasm .pmc .ops .pod .pg .tg
-	--perl         .pl .pm .pod .t .psgi
-	--perltest     .t
-	--php          .php .phpt .php3 .php4 .php5 .phtml
-	--plone        .pt .cpt .metadata .cpy .py
-	--pmc          .pmc
-	--python       .py
-	--rake         Rakefile
-	--rr           .R
-	--ruby         .rb .rhtml .rjs .rxml .erb .rake .spec
-	--rust         .rs
-	--sass         .sass .scss
-	--scala        .scala
-	--scheme       .scm .ss
-	--shell        .sh .bash .csh .tcsh .ksh .zsh .fish
-	--smalltalk    .st
-	--sql          .sql .ctl
-	--tcl          .tcl .itcl .itk
-	--tex          .tex .cls .sty
-	--textile      .textile
-	--tt           .tt .tt2 .ttml
-	--vb           .bas .cls .frm .ctl .vb .resx
-	--verilog      .v .vh .sv
-	--vhdl         .vhd .vhdl
-	--vim          .vim
-	--xml          .xml .dtd .xsl .xslt .ent
-	--yaml         .yaml .yml
+    --actionscript .as .mxml
+    --ada          .ada .adb .ads
+    --asm          .asm .s
+    --asp          .asp
+    --aspx         .master .ascx .asmx .aspx .svc
+    --batch        .bat .cmd
+    --cc           .c .h .xs
+    --cfmx         .cfc .cfm .cfml
+    --clojure      .clj
+    --cmake        CMakeLists.txt; .cmake
+    --coffeescript .coffee
+    --cpp          .cpp .cc .cxx .m .hpp .hh .h .hxx
+    --csharp       .cs
+    --css          .css
+    --dart         .dart
+    --delphi       .pas .int .dfm .nfm .dof .dpk .dproj .groupproj .bdsgroup .bdsproj
+    --elisp        .el
+    --elixir       .ex .exs
+    --erlang       .erl .hrl
+    --fortran      .f .f77 .f90 .f95 .f03 .for .ftn .fpp
+    --go           .go
+    --groovy       .groovy .gtmpl .gpp .grunit .gradle
+    --haskell      .hs .lhs
+    --hh           .h
+    --html         .htm .html
+    --java         .java .properties
+    --js           .js
+    --json         .json
+    --jsp          .jsp .jspx .jhtm .jhtml
+    --less         .less
+    --lisp         .lisp .lsp
+    --lua          .lua
+    --make         .mk; .mak; makefile; Makefile; GNUmakefile
+    --matlab       .m
+    --md           .mkd; .md
+    --objc         .m .h
+    --objcpp       .mm .h
+    --ocaml        .ml .mli
+    --parrot       .pir .pasm .pmc .ops .pod .pg .tg
+    --perl         .pl .pm .pod .t .psgi
+    --perltest     .t
+    --php          .php .phpt .php3 .php4 .php5 .phtml
+    --plone        .pt .cpt .metadata .cpy .py
+    --pmc          .pmc
+    --python       .py
+    --rake         Rakefile
+    --rr           .R
+    --ruby         .rb .rhtml .rjs .rxml .erb .rake .spec
+    --rust         .rs
+    --sass         .sass .scss
+    --scala        .scala
+    --scheme       .scm .ss
+    --shell        .sh .bash .csh .tcsh .ksh .zsh .fish
+    --smalltalk    .st
+    --sql          .sql .ctl
+    --tcl          .tcl .itcl .itk
+    --tex          .tex .cls .sty
+    --textile      .textile
+    --tt           .tt .tt2 .ttml
+    --vb           .bas .cls .frm .ctl .vb .resx
+    --verilog      .v .vh .sv
+    --vhdl         .vhd .vhdl
+    --vim          .vim
+    --xml          .xml .dtd .xsl .xslt .ent
+    --yaml         .yaml .yml
 
 ### Default ignored directories
     [".bzr", ".cdv", ".dep", ".dot", ".nib", ".plst", ".git", ".hg", ".pc", ".svn",
