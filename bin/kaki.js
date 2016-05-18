@@ -1,18 +1,16 @@
 #!/usr/bin/env node
 
 var program = require('commander');
-var chalk = require('chalk');
+var ora = require('ora');
 var fs = require('./../lib/fs-improved');
 var types = require('./../lib/types');
 var filters = require('./../lib/filters');
 var defaultConfig = require('./../lib/default-config');
 var util = require('./../lib/util');
-var ora = require('ora');
 
 var timeStart = 0;
 var typeList = types.getAll();
 var selectedTypes = [];
-var path = process.cwd();
 var spinner = ora('searching files');
 
 /**
@@ -81,7 +79,7 @@ function checkParams() {
         }
     }
 
-    path = program.args[0] || path;
+    var path = program.args[0] || process.cwd();
     // go recursively or not
     if (program.rec) {
         fs.readdirRec(path, applyFilters);
@@ -96,7 +94,15 @@ function checkParams() {
  * @param {Array <string>} files
  */
 function applyFilters(err, files) {
-    var processFilesQty = files.length;
+    var searchedFiles = files.length;
+
+    try {
+        if (err) throw err;
+        runFilters(files);
+    } catch (ex) {
+        spinner.stop();
+        util.print('\nERROR: oopps something is wrong..\n')('red');
+    }
 
     function runFilters(files) {
         files = filters.validExtensions(files, selectedTypes);
@@ -120,35 +126,32 @@ function applyFilters(err, files) {
      * @param response
      */
     function processResult(response) {
-        var timeEnd = Date.now() - timeStart;
         spinner.stop();
 
+        if (!response.length)
+            return util.print('-- srry, no files were found --\n')('yellow');
+
         if (response && typeof response[0] === 'object') {
-            response.forEach(function (item) {
+            printForTextSearch(response);
+        } else {
+            util.print(response.join('\n'))();
+        }
+        util.print('%s matches over %s files in %s ms',
+            response.length,
+            searchedFiles,
+            Date.now() - timeStart)
+        ('green');
+
+
+        //print matched files and related lines that contains the searched expression
+        function printForTextSearch(input) {
+            input.forEach(function (item) {
                 util.print(item.file)('green');
                 if (item.lines.length) {
                     util.print(item.lines.join('\n'))();
                 }
             });
-        } else {
-            util.print(response.join('\n'))('white');
         }
-
-        if (!response.length) {
-            util.print('-- srry, no files were found --\n')('yellow');
-        } else {
-            util.print('%s matches', response.length)('green');
-        }
-        util.print('%s searched files in %s ms', processFilesQty, timeEnd)('gray');
-    }
-
-
-    try {
-        if (err) throw err;
-        runFilters(files);
-    } catch (ex) {
-        spinner.stop();
-        util.print('\nERROR: oopps something is wrong..\n')('red');
     }
 }
 
