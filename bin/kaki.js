@@ -7,11 +7,13 @@ var types = require('./../lib/types');
 var filters = require('./../lib/filters');
 var defaultConfig = require('./../lib/default-config');
 var util = require('./../lib/util');
+var ora = require('ora');
 
 var timeStart = 0;
 var typeList = types.getAll();
 var selectedTypes = [];
 var path = process.cwd();
+var spinner = ora('searching files');
 
 /**
  * configure input options
@@ -44,18 +46,21 @@ function initialize() {
 function checkParams() {
 
     timeStart = Date.now();
+    spinner.start();
     filters.configure(program.ignorecase, program.invert);
 
     //verify if path exists
     if (program.args[0]) {
         fs.access(program.args[0], function (err) {
             if (err) {
+                spinner.stop();
                 util.print('\nERROR: path not found.\n')('red');
                 process.exit();
             }
         });
     }
 
+    //ignore directories
     if (program.ignore) {
         defaultConfig.setIgnoreList(program.ignore.split(','));
     }
@@ -116,6 +121,7 @@ function applyFilters(err, files) {
      */
     function processResult(response) {
         var timeEnd = Date.now() - timeStart;
+        spinner.stop();
 
         if (response && typeof response[0] === 'object') {
             response.forEach(function (item) {
@@ -141,6 +147,7 @@ function applyFilters(err, files) {
         if (err) throw err;
         runFilters(files);
     } catch (ex) {
+        spinner.stop();
         util.print('\nERROR: oopps something is wrong..\n')('red');
     }
 }

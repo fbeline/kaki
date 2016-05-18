@@ -1,6 +1,6 @@
 {
   "name": "kaki",
-    "version": "1.3.4",
+  "version": "1.3.5",
   "description": "The developers search tool",
   "main": "./bin/kaki.js",
   "repository": {
@@ -20,7 +20,8 @@
   "dependencies": {
     "async": "^1.5.2",
     "chalk": "^1.1.3",
-    "commander": "^2.9.0"
+    "commander": "^2.9.0",
+    "ora": "^0.2.1"
   },
   "keywords": [
     "grep",
