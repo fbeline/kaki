@@ -94,7 +94,7 @@ function checkParams() {
  * @param {Array <string>} files
  */
 function applyFilters(err, files) {
-    var searchedFiles = files.length;
+    //var searchedFiles = files.length;
 
     try {
         if (err) throw err;
@@ -136,11 +136,11 @@ function applyFilters(err, files) {
         } else {
             util.print(response.join('\n'))();
         }
-        util.print('%s matches over %s files in %s ms',
+        util.print('=== INFO ===\n%s matched file(s) in %s ms',
             response.length,
-            searchedFiles,
+            //searchedFiles,
             Date.now() - timeStart)
-        ('green');
+        ('yellow');
 
 
         //print matched files and related lines that contains the searched expression
