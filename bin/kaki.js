@@ -136,7 +136,7 @@ function applyFilters(err, files) {
         } else {
             util.print(response.join('\n'))();
         }
-        util.print('=== INFO ===\n%s matched file(s) in %s ms',
+        util.print('\n%s matched file(s) in %s ms\n',
             response.length,
             //searchedFiles,
             Date.now() - timeStart)
