@@ -10,7 +10,7 @@ Search tool designed for developers
 - Portable and easy to install (any machine with nodejs installed)
 - Open source
 
-![kaki grep example](https://cloud.githubusercontent.com/assets/5730881/15449410/532dbb64-1f53-11e6-8d2f-58c208636b53.png)
+![kaki grep example](https://cloud.githubusercontent.com/assets/5730881/15449471/01b88000-1f55-11e6-912b-c22270eff82e.png)
 
 ### Instalation
     npm install -g kaki
