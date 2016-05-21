@@ -19,7 +19,7 @@ var spinner = ora('searching files');
 function initialize() {
 
     program
-        .version('1.5.1')
+        .version('1.5.2')
         .option('-i, --ignorecase', 'Ignore case distinctions')
         .option('-t, --extension <items>', 'Filter by custom types ex: ".app,.jar,.exe"')
         .option('-R, --rec', 'recurse into subdirectories')
