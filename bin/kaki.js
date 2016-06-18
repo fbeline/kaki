@@ -19,14 +19,15 @@ var spinner = ora('searching files');
 function initialize() {
 
     program
-        .version('1.5.2')
+        .version('1.5.5')
         .option('-i, --ignorecase', 'Ignore case distinctions')
         .option('-t, --extension <items>', 'Filter by custom types ex: ".app,.jar,.exe"')
-        .option('-R, --rec', 'recurse into subdirectories')
-        .option('-x, --text [text]', 'find text or /regex/ in files')
-        .option('-w, --word [word]', 'force PATTERN to match only whole words or /regex/ (file name)')
+        .option('-R, --rec', 'Recurse into subdirectories')
+        .option('-x, --text [text]', 'Find text or /regex/ in files')
+        .option('-w, --word [word]', 'Force PATTERN to match only whole words or /regex/ (file name)')
         .option('-v, --invert', 'Invert match: select non-matching lines')
-        .option('--ignore <items>', 'ignore directories');
+        .option('--ignore <items>', 'Ignore directories')
+        .option('--sort', 'Sort the found files');
 
 
     //dynamic generate options
@@ -107,10 +108,17 @@ function applyFilters(err, files) {
     function runFilters(files) {
         files = filters.validExtensions(files, selectedTypes);
 
+        //sort files by base name
+        if (program.sort) {
+            util.sortByFirstLetter(files);
+        }
+
+        //search by file name
         if (program.word) {
             files = filters.fileNameMatch(files, program.word);
         }
 
+        //search by file content
         if (program.text) {
             filters.fileContentMatch(files, program.text, function (err, result) {
                 if (err) throw err;

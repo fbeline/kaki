@@ -75,4 +75,12 @@ describe('testing util', function () {
             assert.equal(output.toString(), [1,3,2].toString());
         });
     });
+    
+    describe('sortByFirstLetter', function(){
+       it('sanity', function() {
+           var arr = ['banana', 'apple', 'grape'];
+           util.sortByFirstLetter(arr);
+           assert.equal(arr.toString(), ['apple', 'banana', 'grape'].toString());
+       });
+    });
 });

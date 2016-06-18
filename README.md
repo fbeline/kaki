@@ -69,6 +69,7 @@ Ignore directories `--ignore`
      -R, --rec              search recursively
      -v, --invert-match     Invert match: select non-matching lines
      --ignore               Ignore directories from search
+     --sort                 Sort the found files
 
 ### Supported languages and related extensions
 
