@@ -14,13 +14,19 @@ describe('testing default-config', function () {
         assert.isNotTrue(output);
     });
 
-    it('custom ignore', function () {
+    it('custom ignore path', function () {
         var path = 'src';
         var output = defaultConfig.ignore(path);
         assert.isNotTrue(output);
 
         defaultConfig.setIgnoreList(['src']);
         output = defaultConfig.ignore(path);
+        assert.isTrue(output);
+    });
+    
+    it('ignore min files', function(){
+        var path = 'test.min.js';
+        var output = defaultConfig.ignore(path);
         assert.isTrue(output);
     });
 });
