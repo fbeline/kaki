@@ -143,22 +143,25 @@ function applyFilters(err, files) {
             printForTextSearch(response);
         } else {
             util.print(response.join('\n'))();
+            util.print('\n%s matched file(s) in %s ms\n',
+                    response.length, Date.now() - timeStart)('yellow');
         }
-        util.print('\n%s matched file(s) in %s ms\n',
-            response.length,
-            //searchedFiles,
-            Date.now() - timeStart)
-        ('yellow');
 
 
         //print matched files and related lines that contains the searched expression
         function printForTextSearch(input) {
+            var totalMatches = 0;
+            var totalLines = 0;
             input.forEach(function (item) {
+                totalMatches += item.matches;
+                totalLines += item.lines.length;
                 util.print(item.file)('green');
                 if (item.lines.length) {
                     util.print(item.lines.join('\n'))();
                 }
             });
+            util.print("\nTotal of: %s file(s), %s line(s), %s matche(s) in %sms ",
+                    input.length, totalLines, totalMatches, Date.now() - timeStart)('yellow');
         }
     }
 }

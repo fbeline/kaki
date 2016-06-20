@@ -1,6 +1,6 @@
 {
     "name": "kaki",
-    "version": "1.5.6",
+    "version": "1.5.7",
     "description": "Search tool designed for developers",
     "main": "./bin/kaki.js",
     "repository": {
