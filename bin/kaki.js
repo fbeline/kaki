@@ -7,6 +7,7 @@ var types = require('./../lib/types');
 var filters = require('./../lib/filters');
 var defaultConfig = require('./../lib/default-config');
 var util = require('./../lib/util');
+var err = require('./../lib/error');
 
 var timeStart = 0;
 var typeList = types.getAll();
@@ -50,11 +51,9 @@ function checkParams() {
 
     //verify if path exists
     if (program.args[0]) {
-        fs.access(program.args[0], function (err) {
-            if (err) {
-                spinner.stop();
-                util.print('\nERROR: path not found.\n')('red');
-                process.exit();
+        fs.access(program.args[0], function (error) {
+            if (error) {
+                err.shallStop('ERROR: path not found.');
             }
         });
     }
@@ -94,16 +93,12 @@ function checkParams() {
  * @param err
  * @param {Array <string>} files
  */
-function applyFilters(err, files) {
-    //var searchedFiles = files.length;
+function applyFilters(error, files) {
 
-    try {
-        if (err) throw err;
-        runFilters(files);
-    } catch (ex) {
-        spinner.stop();
-        util.print('\nERROR: oopps something is wrong..\n')('red');
-    }
+    if (error)
+        err.shallStop(error);
+
+    runFilters(files);
 
     function runFilters(files) {
         files = filters.validExtensions(files, selectedTypes);
@@ -120,8 +115,9 @@ function applyFilters(err, files) {
 
         //search by file content
         if (program.text) {
-            filters.fileContentMatch(files, program.text, function (err, result) {
-                if (err) throw err;
+            filters.fileContentMatch(files, program.text, function (error, result) {
+                if (error)
+                    err.shallStop(error);
                 processResult(result);
             });
         } else {
@@ -137,7 +133,7 @@ function applyFilters(err, files) {
         spinner.stop();
 
         if (!response.length)
-            return util.print('-- srry, no files were found --\n')('yellow');
+            err.shallStop('-- sorry, no files were found --');
 
         if (response && typeof response[0] === 'object') {
             printForTextSearch(response);
