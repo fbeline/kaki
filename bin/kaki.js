@@ -8,11 +8,11 @@ var filters = require('./../lib/filters');
 var defaultConfig = require('./../lib/default-config');
 var util = require('./../lib/util');
 var err = require('./../lib/error');
+var spinner = ora('searching files');
 
 var timeStart = 0;
 var typeList = types.getAll();
 var selectedTypes = [];
-var spinner = ora('searching files');
 
 /**
  * configure input options
@@ -20,21 +20,23 @@ var spinner = ora('searching files');
 function initialize() {
 
     program
-        .version('1.5.6')
+        .version('1.5.8')
         .option('-i, --ignorecase', 'Ignore case distinctions')
         .option('-t, --extension <items>', 'Filter by custom types ex: ".app,.jar,.exe"')
         .option('-R, --rec', 'Recurse into subdirectories')
         .option('-x, --text [text]', 'Find text or /regex/ in files')
         .option('-w, --word [word]', 'Force PATTERN to match only whole words or /regex/ (file name)')
         .option('-v, --invert', 'Invert match: select non-matching lines')
-        .option('--ignore <items>', 'Ignore directories')
+        .option('--ignore-dir <items>', 'Ignore directories')
+        .option('--ignore-file <items>', 'Ignore files')
+        .option('--ignore-ext <items>', 'Ignore extensions')
         .option('--sort', 'Sort the found files');
 
 
     //dynamic generate options
-    for (var type in typeList) {
+    Object.keys(typeList).forEach(function(type) {
         program.option('--' + type, 'filter ' + type + ' files');
-    }
+    });
 
     program.parse(process.argv);
     checkParams();
@@ -58,10 +60,7 @@ function checkParams() {
         });
     }
 
-    //ignore directories
-    if (program.ignore) {
-        defaultConfig.setIgnoreList(program.ignore.split(','));
-    }
+    shouldIgnore();
 
     //if extension param exists
     if (program.extension) {
@@ -71,13 +70,13 @@ function checkParams() {
     }
 
     //verify dynamic type params
-    for (var type in typeList) {
+    Object.keys(typeList).forEach(function(type) {
         if (program[type]) {
             types.get(type).forEach(function (el) {
                 selectedTypes.push(el);
             });
         }
-    }
+    });
 
     var path = program.args[0] || process.cwd();
     // go recursively or not
@@ -85,6 +84,24 @@ function checkParams() {
         fs.readdirRec(path, applyFilters);
     } else {
         fs.readdir(path, applyFilters);
+    }
+
+    function shouldIgnore() {
+        var ignoreDirList, ignoreFileList, ignoreExtList;
+
+        //ignore directories
+        if (program.ignoreDir) {
+            ignoreDirList = program.ignoreDir.split(',');
+        }
+
+        if (program.ignoreFile) {
+            ignoreFileList = program.ignoreFile.split(',');
+        }
+
+        if (program.ignoreExt) {
+            ignoreExtList = program.ignoreExt.split(',');
+        }
+        defaultConfig.setIgnoreList(ignoreDirList, ignoreFileList, ignoreExtList);
     }
 }
 

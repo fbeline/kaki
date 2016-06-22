@@ -54,9 +54,9 @@ Ignore case distinctions `-i`
 
     kaki -i [OPTIONS]... PATTERN [path]
 
-Ignore directories `--ignore`
+Ignore directories `--ignore-dir`. Similar approach for `--ignore-file` and `--ignore-ext`
 
-    kaki -R --ignore dist,target
+    kaki -R --ignore-dir dist,target
 
 ### General options
 
@@ -68,7 +68,9 @@ Ignore directories `--ignore`
      -t, --extensions       filter by custom types ex: ".app,.jar,.exe"
      -R, --rec              search recursively
      -v, --invert-match     Invert match: select non-matching lines
-     --ignore               Ignore directories from search
+     --ignore-dir           Ignore directories from search
+     --ignore-file          Ignore files from search
+     --ignore-ext           Ignore extensions from search
      --sort                 Sort the found files
 
 ### Supported languages and related extensions
