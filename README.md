@@ -1,4 +1,4 @@
-![logo](https://cloud.githubusercontent.com/assets/5730881/14907747/65247360-0da3-11e6-9353-a6f6e4659ff4.png)
+![kaki](https://cloud.githubusercontent.com/assets/5730881/16360403/85b0c1bc-3b37-11e6-8c05-0ce7ce5685fb.png)
 
 Search tool designed for developers
 
