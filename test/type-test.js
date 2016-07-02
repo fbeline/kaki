@@ -1,22 +1,18 @@
-var describe = require('mocha').describe;
-var it = require('mocha').it;
-var assert = require('chai').assert;
+var expect = require('chai').expect;
 var type = require('../lib/types.js');
 
-describe("testing types", function () {
+describe("types", function () {
 
     it("get all types", function () {
         var types = type.getAll();
-        assert.typeOf(types, 'object');
-        assert.property(types, 'md');
-        assert.typeOf(types.md, 'array');
-        assert.lengthOf(types.md, 2);
+        expect(types).to.be.instanceof(Object);
+        expect(types.md).to.be.instanceof(Array);
+        expect(types.md).to.have.lengthOf(2);
     });
 
     it("get type by name", function () {
         var ruby = type.get('ruby');
-        assert.typeOf(ruby, 'array');
-        assert.lengthOf(ruby, 7);
-        assert.typeOf(ruby[0], 'string');
+        expect(ruby).to.be.instanceof(Array);
+        expect(ruby).to.have.lengthOf(7);
     });
 });

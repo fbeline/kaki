@@ -1,6 +1,4 @@
-var describe = require('mocha').describe;
-var it = require('mocha').it;
-var assert = require('chai').assert;
+var expect = require('chai').expect;
 var filters = require('../lib/filters');
 
 var files = ["index.js", "index2.js", "module42.js", "package.json", "jshint.json", "SCRIPT.sh"];
@@ -12,25 +10,25 @@ describe("testing filters", function () {
             filters.configure(false, false);
             var literal = "inde";
             var response = filters.fileNameMatch(files, literal);
-            assert.typeOf(response, 'array');
-            assert.lengthOf(response, 2);
+            expect(response).to.be.instanceof(Array);
+            expect(response).to.have.lengthOf(2);
         });
 
         it("invert match", function () {
             filters.configure(false, true);
             var literal = "inde";
             var response = filters.fileNameMatch(files, literal);
-            assert.typeOf(response, 'array');
-            assert.lengthOf(response, 4);
+            expect(response).to.be.instanceof(Array);
+            expect(response).to.have.lengthOf(4);
         });
 
         it("ignore case", function () {
             filters.configure(true, false);
             var literal = "script";
             var response = filters.fileNameMatch(files, literal);
-            assert.typeOf(response, 'array');
-            assert.lengthOf(response, 1);
-            assert.equal(response, "SCRIPT.sh");
+            expect(response).to.be.instanceof(Array);
+            expect(response).to.have.lengthOf(1);
+            expect(response).to.include("SCRIPT.sh");
         });
     });
 
@@ -41,27 +39,31 @@ describe("testing filters", function () {
             filters.configure(false, false);
             var regex = "/[0-9]+.*/";
             var response = filters.fileNameMatch(files, regex);
-            assert.typeOf(response, 'array');
-            assert.lengthOf(response, 2);
-            assert.equal(String(response), "index2.js,module42.js");
+            expect(response).to.be.instanceof(Array);
+            expect(response).to.have.lengthOf(2);
+            expect(response).to.include("index2.js");
+            expect(response).to.include("module42.js");
         });
 
         it("invert match", function () {
             filters.configure(false, true);
             var word = "/index/";
             var response = filters.fileNameMatch(files, word);
-            assert.typeOf(response, 'array');
-            assert.lengthOf(response, 4);
-            assert.equal(String(response), "module42.js,package.json,jshint.json,SCRIPT.sh");
+            expect(response).to.be.instanceof(Array);
+            expect(response).to.have.lengthOf(4);
+            expect(response).to.include("module42.js");
+            expect(response).to.include("package.json");
+            expect(response).to.include("jshint.json");
+            expect(response).to.include("SCRIPT.sh");
         });
 
         it("ignore case", function () {
             filters.configure(true, false);
             var word = "/scri/";
             var response = filters.fileNameMatch(files, word);
-            assert.typeOf(response, 'array');
-            assert.lengthOf(response, 1);
-            assert.equal(response, "SCRIPT.sh");
+            expect(response).to.be.instanceof(Array);
+            expect(response).to.have.lengthOf(1);
+            expect(response).to.include("SCRIPT.sh");
         });
     });
 
@@ -70,16 +72,16 @@ describe("testing filters", function () {
             filters.configure(false, false);
             var extensions = [".js", ".sh"];
             var response = filters.validExtensions(files, extensions);
-            assert.typeOf(response, 'array');
-            assert.lengthOf(response, 4);
+            expect(response).to.be.instanceof(Array);
+            expect(response).to.have.lengthOf(4);
         });
 
         it("invert match", function () {
             filters.configure(false, true);
             var extensions = [".js", ".sh"];
             var response = filters.validExtensions(files, extensions);
-            assert.typeOf(response, 'array');
-            assert.lengthOf(response, 2);
+            expect(response).to.be.instanceof(Array);
+            expect(response).to.have.lengthOf(2);
         });
 
     });
