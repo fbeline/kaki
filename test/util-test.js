@@ -1,5 +1,4 @@
 var describe = require('mocha').describe;
-var it = require('mocha').it;
 var util = require('../lib/util');
 var assert = require('chai').assert;
 
@@ -53,18 +52,6 @@ describe('testing util', function () {
         });
     });
 
-    describe('isRegex', function () {
-        it('sanity', function () {
-            var expression = '/its n/ot a regex';
-            var output = util.isRegex(expression);
-            assert.isNotTrue(output);
-
-            expression = '/\d+.*/'
-            output = util.isRegex(expression);
-            assert.isTrue(output);
-        });
-    });
-
     describe('uniq', function () {
         it('sanity', function () {
             var arr = [1, 2, 3, 4, 5];
@@ -75,7 +62,7 @@ describe('testing util', function () {
             assert.equal(output.toString(), [1,3,2].toString());
         });
     });
-    
+
     describe('sortByFirstLetter', function(){
        it('sanity', function() {
            var arr = ['banana', 'apple', 'grape'];
