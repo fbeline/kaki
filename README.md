@@ -1,4 +1,4 @@
-![kaki](https://cloud.githubusercontent.com/assets/5730881/16360403/85b0c1bc-3b37-11e6-8c05-0ce7ce5685fb.png)
+## Kaki
 
 Search tool designed for developers
 
