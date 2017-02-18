@@ -12,8 +12,8 @@
   },
   "scripts": {
     "test": "mocha test",
-    "coverage": "istanbul cover _mocha -- -R spec",
-    "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
+    "coverage": "istanbul cover _mocha --report lcovonly -- -R spec",
+    "coveralls": "npm run coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "devDependencies": {
     "chai": "^3.5.0",
