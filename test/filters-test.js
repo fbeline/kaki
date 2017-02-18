@@ -85,4 +85,10 @@ describe("testing filters", function () {
         });
 
     });
+
+    describe("filecontentMatch", function() {
+        it("sanity", function() {
+
+        });
+    });
 });
