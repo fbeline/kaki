@@ -1,5 +1,6 @@
 ## Kaki
-https://travis-ci.org/FelipeBB/kaki.svg?branch=master
+[![Build Status][travis-image]][https://travis-ci.org/FelipeBB/kaki.svg?branch=master]
+[![Coverage Status](https://coveralls.io/repos/github/FelipeBB/kaki/badge.svg)](https://coveralls.io/github/FelipeBB/kaki)
 
 Search tool designed for developers
 
