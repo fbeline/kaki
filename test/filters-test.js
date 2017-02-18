@@ -89,7 +89,7 @@ describe("testing filters", function () {
     describe("filecontentMatch", function() {
         it("sanity", function(done) {
             filters.configure(false, false);
-            filters.fileContentMatch(["/home/felipe/Documents/projects/node/kaki/test/filters-test.js"], "ignore", response);
+            filters.fileContentMatch(["./test/filters-test.js"], "ignore", response);
 
             function response(err, resp) {
                 if (err) done(err);
