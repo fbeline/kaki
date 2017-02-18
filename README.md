@@ -1,8 +1,7 @@
-## Kaki
-[![Build Status](https://travis-ci.org/FelipeBB/kaki.svg?branch=master)](https://travis-ci.org/FelipeBB/kaki.svg?branch=master)
-[![Coverage Status](https://coveralls.io/repos/github/FelipeBB/kaki/badge.svg)](https://coveralls.io/github/FelipeBB/kaki)
+## [![Build Status](https://travis-ci.org/FelipeBB/kaki.svg?branch=master)](https://travis-ci.org/FelipeBB/kaki) [![Coverage Status](https://coveralls.io/repos/github/FelipeBB/kaki/badge.svg)](https://coveralls.io/github/FelipeBB/kaki)
 
-Search tool designed for developers
+![logo](https://cloud.githubusercontent.com/assets/5730881/23096437/7ea785cc-f603-11e6-8b26-24a63e6b4c5a.png) 
+
 
 ### Why??
 - Designed to save your time
