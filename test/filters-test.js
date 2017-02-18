@@ -87,8 +87,17 @@ describe("testing filters", function () {
     });
 
     describe("filecontentMatch", function() {
-        it("sanity", function() {
+        it("sanity", function(done) {
+            filters.configure(false, false);
+            filters.fileContentMatch(["/home/felipe/Documents/projects/node/kaki/test/filters-test.js"], "ignore", response);
 
+            function response(err, resp) {
+                if (err) done(err);
+                expect(resp).to.be.instanceof(Array);
+                expect(resp).to.have.lengthOf(1);
+                expect(resp[0].matches).to.equal(3);
+                done();
+            }
         });
     });
 });
