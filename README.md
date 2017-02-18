@@ -1,4 +1,5 @@
 ## Kaki
+https://travis-ci.org/FelipeBB/kaki.svg?branch=master
 
 Search tool designed for developers
 
