@@ -1,6 +1,4 @@
-## [![Build Status](https://travis-ci.org/FelipeBB/kaki.svg?branch=master)](https://travis-ci.org/FelipeBB/kaki) [![Coverage Status](https://coveralls.io/repos/github/FelipeBB/kaki/badge.svg)](https://coveralls.io/github/FelipeBB/kaki)
-
-![logo](https://cloud.githubusercontent.com/assets/5730881/23096437/7ea785cc-f603-11e6-8b26-24a63e6b4c5a.png) 
+## [![Build Status](https://travis-ci.org/fbeline/kaki.svg?branch=master)](https://travis-ci.org/fbeline/kaki) [![Coverage Status](https://coveralls.io/repos/github/fbeline/kaki/badge.svg)](https://coveralls.io/github/fbeline/kaki)
 
 
 ### Why??
